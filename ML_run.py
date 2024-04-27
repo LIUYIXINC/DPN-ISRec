@@ -37,7 +37,7 @@ class GAFM( torch.nn.Module ):
         self.fc3 = nn.Linear(512, 1)
         self.relu = nn.ReLU()
 
-    #FM聚合
+    #FM
     def FMaggregator( self, feature_embs ):
         square_of_sum = torch.sum( feature_embs, dim = 1 )**2
         sum_of_square = torch.sum( feature_embs**2, dim = 1 )
@@ -51,7 +51,6 @@ class GAFM( torch.nn.Module ):
             new_embs.append( torch.unsqueeze( embs, dim = 0 ) )
 
         return torch.cat( new_embs, dim = 0 )
-
 
     def attentionPositive_Negative(self, users_positive, users_negative, users_df):
         Q = self.query(users_df)
