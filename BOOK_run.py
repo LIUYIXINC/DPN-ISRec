@@ -32,13 +32,12 @@ class GAFM( torch.nn.Module ):
         self.f3 = nn.Linear(dim, 520)
         self.f4 = nn.Linear(520, 1)
 
-        # 预测MLP
         self.fc1 = nn.Linear(dim * 2, 1024)
         self.fc2 = nn.Linear(1024, 512)
         self.fc3 = nn.Linear(512, 1)
         self.relu = nn.ReLU()
 
-    #FM聚合
+    #FM
     def FMaggregator( self, feature_embs ):
         # feature_embs:[ batch_size, n_features, k ]
         # [ batch_size, k ]
