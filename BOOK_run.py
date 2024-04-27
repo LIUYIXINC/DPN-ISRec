@@ -7,7 +7,7 @@ from torch import nn
 import utils
 import numpy as np
 from sklearn.metrics import roc_auc_score
-
+import os
 
 class GAFM( torch.nn.Module ):
 
@@ -279,6 +279,8 @@ if __name__ == '__main__':
     G3,empty_Negative = utils.get_Negative_graph(train_data, user_set)
     print(len(empty_Negative))
     print("Model Training...")
+    if not os.path.exists("BOOK_Model"):
+        os.makedirs("BOOK_Model")
     net = GAFM(max(user_set) + 1,len(user_set), max(item_set2) + 1, 128)
     train()
     test()
